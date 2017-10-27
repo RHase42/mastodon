@@ -1,2 +1,3 @@
-default: styles/application.scss
+default: styles/cybre.scss 
+mastodon: styles/application.scss 
 contrast: styles/contrast.scss
