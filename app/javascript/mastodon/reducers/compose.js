@@ -327,7 +327,6 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
-<<<<<<< HEAD
   case REDRAFT:
     return state.withMutations(map => {
       map.set('text', unescapeHTML(expandMentions(action.status)));
@@ -346,10 +345,8 @@ export default function compose(state = initialState, action) {
         map.set('spoiler_text', '');
       }
     });
-=======
   case COMPOSE_DOODLE_SET:
     return state.mergeIn(['doodle'], action.options);
->>>>>>> Doodle palette, options, fill tool (#172)
   default:
     return state;
   }
