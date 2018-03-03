@@ -188,6 +188,16 @@ $gold-star: #dd9d08;
   color: darken($ui-base-lighter-color, 15%);
 }
 
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track
+{
+  background: lighten($ui-primary-color, 5%);
+}
+
+.react-toggle:not(.react-toggle--disabled) .react-toggle-track
+{
+  background: $ui-primary-color;
+}
+
 
 .compose-form {
   .autosuggest-textarea__textarea,
@@ -540,6 +550,14 @@ button.icon-button {
 
 .onboarding-modal__page h1 {
   background-color: darken($ui-primary-color, 5%);
+}
+
+.onboarding-modal, .error-modal, .embed-modal {
+  color: $primary-text-color;
+}
+
+.column-link__badge {
+  color: $ui-base-lighter-color;
 }
 
 /* forms.scss */
