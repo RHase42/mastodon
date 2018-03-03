@@ -117,7 +117,6 @@ $ui-highlight-color: $win95-window-header;
   vertical-align: middle;
 }
 
-
 /* main win95 style */
 
 body {
@@ -228,7 +227,7 @@ body.admin {
 }
 
 .column-header {
-  padding:2px;
+  padding:0px;
   font-size:13px;
   background:#7f7f7f;
   @include win95-border-outset()
@@ -236,6 +235,10 @@ body.admin {
   color:white;
   font-weight:bold;
   align-items:baseline;
+}
+
+.column-header > button {
+  padding:0px;
 }
 
 .column-header__wrapper.active {
@@ -1098,6 +1101,28 @@ body.admin {
     color:white;
   }
 }
+
+.column-link__badge {
+  background-image: url('../images/alert_badge.png');
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-color:transparent;
+  border-radius:0;
+  box-sizing: border-box;
+  width: 24px;
+  height:24px;
+  padding-top:4px;
+  padding-left:0px;
+  padding-right:1px;
+  text-align:center;
+  position:relative;
+  top:2px;
+}
+
+.column-link:hover .column-link__badge {
+  color:black;
+}
+
 
 .getting-started__wrapper {
   .column-subheading {
