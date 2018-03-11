@@ -35,6 +35,7 @@ module Mastodon
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
       :en,
+      :'en-CY',
       :ar,
       :bg,
       :ca,
@@ -75,9 +76,9 @@ module Mastodon
 
     config.i18n.default_locale = ENV['DEFAULT_LOCALE']&.to_sym
     if config.i18n.available_locales.include?(config.i18n.default_locale)
-      config.i18n.fallbacks = [:en]
+      config.i18n.fallbacks = [:'en-CY']
     else
-      config.i18n.default_locale = :en
+      config.i18n.default_locale = :'en-CY'
     end
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')

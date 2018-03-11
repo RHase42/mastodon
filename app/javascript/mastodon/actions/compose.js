@@ -9,6 +9,7 @@ import {
   refreshHomeTimeline,
   refreshCommunityTimeline,
   refreshPublicTimeline,
+  refreshDirectTimeline,
 } from './timelines';
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
@@ -47,6 +48,8 @@ export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
+
+export const COMPOSE_DOODLE_SET        = 'COMPOSE_DOODLE_SET';
 
 export function changeCompose(text) {
   return {
@@ -134,6 +137,8 @@ export function submitCompose() {
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertOrRefresh('community', refreshCommunityTimeline);
         insertOrRefresh('public', refreshPublicTimeline);
+      } else if (response.data.visibility === 'direct') {
+        insertOrRefresh('direct', refreshDirectTimeline);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -158,6 +163,13 @@ export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+  };
+};
+
+export function doodleSet(options) {
+  return {
+    type: COMPOSE_DOODLE_SET,
+    options: options,
   };
 };
 
