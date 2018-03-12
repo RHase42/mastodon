@@ -14,12 +14,6 @@ window.addEventListener('message', e => {
       id: data.id,
       height: document.getElementsByTagName('html')[0].scrollHeight,
     }, '*');
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(sizeBioText);
-    } else {
-      sizeBioText();
-    }
   });
 });
 
@@ -91,6 +85,12 @@ function main() {
       const props = JSON.parse(content.getAttribute('data-props'));
       ReactDOM.render(<CardContainer locale={locale} {...props} />, content);
     });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(sizeBioText);
+    } else {
+      sizeBioText();
+    }
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
@@ -140,19 +140,19 @@ function main() {
 
     header.style.backgroundImage = `url(${url})`;
   });
-}
 
-function sizeBioText() {
-  const noteCounter = document.querySelector('.note-counter');
-  const bioTextArea = document.querySelector('#account_note');
+  function sizeBioText() {
+    const noteCounter = document.querySelector('.note-counter');
+    const bioTextArea = document.querySelector('#account_note');
 
-  if (noteCounter) {
-    noteCounter.textContent = 413 - length(bioTextArea.value);
-  }
+    if (noteCounter) {
+      noteCounter.textContent = 413 - length(bioTextArea.value);
+    }
 
-  if (bioTextArea) {
-    bioTextArea.style.height = 'auto';
-    bioTextArea.style.height = (bioTextArea.scrollHeight+3) + 'px';
+    if (bioTextArea) {
+      bioTextArea.style.height = 'auto';
+      bioTextArea.style.height = (bioTextArea.scrollHeight+3) + 'px';
+    }
   }
 }
 
