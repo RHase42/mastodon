@@ -8,6 +8,18 @@ $about-page-text: lighten($ui-base-color, 50%);
 
 @import 'application';
 
+@keyframes floating {
+  from {
+    transform: translate(0, 0);
+  }
+  65% {
+    transform: translate(0, 4px);
+  }
+  to {
+    transform: translate(0, -0);
+  }
+}
+
 body, body.about-body {
   background: $ui-base-color url('../images/background-cybre.png');
 }
@@ -16,7 +28,7 @@ body.about-body {
   // basics.scss &.about-body
   background: darken($ui-base-color, 8%) url('../images/background-cybre.png');
 
-  background-position-y: 60px;
+  background-position-y: 200px;
   background-position-x: center;
 }
 
@@ -159,50 +171,92 @@ body.about-body {
   }
 }
 
-.landing-page .header-wrapper,
-.landing-page .header-wrapper.compact {
-    background-image:url('../images/header-cybre.jpeg');
+.landing-page .header-wrapper {
+    background-image:url('../images/header-cybre-alt.jpg');
     background-size:cover;
     background-position:50% 50%;
 }
 
-.landing-page .header {
-    .heading {
-        visibility:hidden;
-    }
-
-    .hero .floats {
-        .float-1, .float-2, .float-3 {
-            opacity:0.4;
-            background-image:url('../images/floppy-1.svg');
-        }
-
-        .float-1 {
-            background-size:200px 200px;
-            width:200px;
-            height:200px;
-            bottom:60px;
-        }
-
-        .float-2 {
-            background-size:150px 150px;
-            width:150px;
-            height:150px;
-            right:280px;
-        }
-
-        .float-3 {
-            background-size:300px 300px;
-            width:300px;
-            height:300px;
-            right: 200px;
-            top: -80px;
-        }
-    }
+.landing-page.alternative .header {
+    background-image:url('../images/header-cybre-colour.jpg');
+    background-repeat: repeat-x;
+    background-size:contain;
+    height:45vh;
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    text-align:center;
 }
 
-.about-body .brand {
-    visibility:hidden;
+.landing-page.alternative .header img {
+    margin: auto;
+    max-height:45vh;
+}
+
+
+.landing-page.alternative .grid {
+    position: relative;
+    z-index:2;
+    margin-top:15vh;
+}
+
+.landing-page.alternative .landing-page__hero img {
+    visibility: hidden;
+    max-height:170px;
+}
+
+.landing-page.alternative .landing-page__forms {
+    height:auto;
+}
+
+.landing-page.alternative .column-1 {
+    display:flex;
+    align-items:flex-end;
+}
+
+.landing-page.alternative .column {
+    max-height:initial;
+}
+
+.landing-page.alternative .row__mascot {
+    .floats {
+        position:absolute;
+        img {
+            width:100%;
+            height:100%;
+        }
+        transition: all 0.1s linear;
+        animation-name: floating;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+    
+    .float-1 {
+        width:50px;
+        height:50px;
+        bottom:60px;
+        left:110px;
+        animation-duration: 3s;
+    }
+
+    .float-2 {
+        width:130px;
+        height:130px;
+        left:85px;
+        bottom: -60px;
+        animation-duration: 3.5s;
+        animation-delay: 0.2s;
+    }
+
+    .float-3 {
+        width:100px;
+        height:100px;
+        right: 50;
+        top: -10px;
+        animation-duration: 4s;
+        animation-delay: 0.5s;
+    }
 }
 
 .activity-stream {
