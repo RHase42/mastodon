@@ -263,7 +263,8 @@ $gold-star: #dd9d08;
   }
 }
 
-.column-header__back-button {
+// selectivity -- needs to override .column-header > button
+.column-header .column-header__back-button {
   background: $header-color;
   color:$header-text-color;
 }
@@ -397,6 +398,14 @@ button.icon-button {
 .account__section-headline a {
   &.active {
     color: $primary-text-color;
+
+    &::after {
+      border-bottom-color: $ui-base-alt;
+    }
+
+    &::after {
+      border-bottom-color: $ui-base-alt;
+    }
   }
 }
 
@@ -583,6 +592,10 @@ button.icon-button {
       }
     }
   }
+}
+
+.react-toggle-track {
+  background-color: $icon-button-inactive-color;
 }
 
 .report-modal__comment .setting-text {
