@@ -98,14 +98,14 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
     }
 
-    if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
-      navItems.push(<ColumnLink key='101' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />);
-    }
-
     navItems.push(
       <ColumnLink key='4' icon='floppy-o' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key='5' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
+
+    if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
+      navItems.push(<ColumnLink key='101' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />);
+    }
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
