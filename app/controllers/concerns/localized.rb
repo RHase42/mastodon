@@ -17,7 +17,12 @@ module Localized
   end
 
   def default_locale
-    request_locale || I18n.default_locale
+    case request_locale
+    when /en\b/, nil
+      I18n.default_locale
+    else
+      request_locale
+    end
   end
 
   def request_locale
