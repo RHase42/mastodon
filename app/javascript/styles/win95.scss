@@ -235,10 +235,12 @@ body.admin {
   color:white;
   font-weight:bold;
   align-items:baseline;
+  min-height: 24px;
 }
 
 .column-header > button {
-  padding:0px;
+  padding: 0px;
+  min-height: 22px;
 }
 
 .column-header__wrapper.active {
@@ -260,7 +262,11 @@ body.admin {
 .column-header__buttons {
   max-height: 20px;
   margin: 2px;
-  margin-left: 1px;
+  margin-left: -2px;
+}
+
+.column-header__buttons button {
+  margin-left: 2px;
 }
 
 .column-header__button {
@@ -287,12 +293,18 @@ body.admin {
   background: $win95-bg;
   color: black;
   padding:2px;
-  max-height:20px;
-  margin:2px;
+  padding-right: 4px;
+  max-height: 20px;
+  min-height: unset;
+  margin: 2px;
   @include win95-outset()
   font-size: 13px;
   line-height: 17px;
   font-weight:bold;
+}
+
+.column-header__buttons .column-header__back-button {
+    margin: 0;
 }
 
 .column-back-button {
@@ -312,7 +324,8 @@ body.admin {
   right:4px;
   max-height:20px;
   max-width:60px;
-  padding:0px 2px;
+  padding: 1px 6px 0 2px;
+  box-sizing: border-box;
 }
 
 .column-back-button__icon {
@@ -345,6 +358,18 @@ body.admin {
   @include win95-border-outset();
   border-bottom-width:0px;
   border-top-width:0px;
+
+  align-items: baseline;
+}
+
+.column-inline-form .icon-button {
+    font-size: 14px!important;
+    line-height: 17px!important;
+}
+
+.column-inline-form .setting-text {
+    line-height: 17px;
+    padding-left: 4px;
 }
 
 .column-settings__section {
@@ -582,6 +607,7 @@ body.admin {
   justify-items:left;
   padding-left:4px;
 }
+
 .icon-button {
   background:$win95-bg;
   @include win95-border-outset()
@@ -1433,7 +1459,7 @@ body.admin {
   top: -1px;
 }
 
-.fa-user-plus {
+.fa-user-plus, .fa-user-times {
   padding: 2px 0px 2px 1px;
 }
 
@@ -1512,6 +1538,13 @@ body.admin {
   text-align:left;
 }
 
+.media-modal .media-modal__close {
+    font-size: 14px!important;
+    line-height: 17px!important;
+    margin-right: 4vw;
+    margin-top: 4vh;
+}
+
 .confirmation-modal__action-bar {
   .confirmation-modal__cancel-button {
     color:black;
@@ -1533,6 +1566,36 @@ body.admin {
   background:white;
   color:black;
   @include win95-inset();
+}
+
+.report-modal__target .media-modal__close {
+  top: 3px;
+  right: 0px;
+  font-size: 12px!important;
+  line-height: 13px!important;
+}
+
+.report-modal__comment p {
+    font-size: 12px;
+    margin-bottom: 1em;
+    padding-left: 3px;
+}
+
+.report-modal__comment .setting-text.light {
+    border-radius: 0;
+}
+
+.report-modal__container {
+    margin-right: 2px;
+}
+
+.report-modal::before {
+    height: 22px;
+    line-height: 23px;
+}
+
+.status-check-box__status .media-gallery {
+    margin: unset;
 }
 
 .modal-root__overlay,
@@ -1888,4 +1951,23 @@ a.table-action-link:hover,
 
 .drawer__inner__mastodon {
   display: none;
+}
+
+.list-editor h4 {
+  padding: 2px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  background: #00007f;
+  border-radius: 0;
+}
+
+.list-editor {
+  @include win95-border-outset();
+  box-shadow: unset;
+}
+
+.list-editor .drawer__inner {
+  @include win95-inset();
+  border-radius: 0;
 }
