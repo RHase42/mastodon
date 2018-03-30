@@ -290,13 +290,28 @@ button.icon-button {
   }
 }
 
-.account__header {
+.account__header, .account-card {
   & > div {
     background: rgba(lighten($ui-base-color, 4%), 0.6);
   }
 
   .account__header__content {
     color: $primary-text-color;
+  }
+
+  .detailed-status__display-name .display-name strong {
+    color: $ui-highlight-color;
+  }
+
+  .icon-button {
+    &, &:hover {
+      color:desaturate($ui-base-lighter-color, 20%);
+    }
+    &.active {
+      &, &:hover {
+        color:$ui-base-lighter-color;
+      }
+    }
   }
 }
 
@@ -453,13 +468,16 @@ button.icon-button {
 .boost-modal,
 .confirmation-modal,
 .report-modal,
-.actions-modal {
+.actions-modal,
+.mute-modal
+{
   color: $primary-text-color;
 }
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
-.report-modal__action-bar  {
+.report-modal__action-bar,
+.mute-modal__action-bar  {
   & > div {
     color: $ui-primary-color;
   }
@@ -619,6 +637,19 @@ button.icon-button {
 
 .pagination .current {
   color: $ui-primary-color;
+}
+
+.report-accounts__item > strong {
+  color: $primary-text-color;
+}
+
+.admin-wrapper .content { 
+  & > p {
+    color: $primary-text-color;
+  }
+  hr {
+    border-color: $ui-highlight-color;
+  }
 }
 
 /* accounts.scss */
