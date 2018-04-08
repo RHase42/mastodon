@@ -405,6 +405,9 @@ button.icon-button {
     background: lighten($ui-primary-color, 10%);
   }
 }
+.column-link__badge {
+  background: saturate(darken($ui-primary-color, 5%), 5%);
+}
 .column-subheading {
   background: darken($ui-primary-color, 5%);
   color:$white;
