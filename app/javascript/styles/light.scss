@@ -9,15 +9,12 @@ $primary-text-color: #382b32;
 $header-color: $ui-primary-color;
 $header-text-color: #fff;
 $icon-button-inactive-color: lighten(desaturate($ui-base-lighter-color, 20%), 20%);
-
+$action-button-color: $icon-button-inactive-color;
 
 $about-page-text: $primary-text-color;
 
 @import 'application';
 
-$ui-base-lighter-color: $icon-button-inactive-color;
-@import 'mastodon/boost';
-$ui-base-lighter-color: darken($ui-base-color, 40%); // Lighter darkest
 
 $gold-star: #dd9d08;
 
