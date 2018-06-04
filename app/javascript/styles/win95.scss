@@ -323,7 +323,6 @@ body.admin {
   top:-22px;
   right:4px;
   max-height:20px;
-  max-width:60px;
   padding: 1px 6px 0 2px;
   box-sizing: border-box;
 }
@@ -1206,6 +1205,14 @@ body.admin {
   }
 }
 
+.column-link[href="/web/timelines/home"] {
+  background-image: url("../images/icon_home.png");
+  &:hover { background-image: url("../images/icon_home.png"); }
+}
+.column-link[href="/web/notifications"] {
+  background-image: url("../images/icon_notifications.png");
+  &:hover { background-image: url("../images/icon_notifications.png"); }
+}
 .column-link[href="/web/timelines/public"] {
   background-image: url("../images/icon_public.png");
   &:hover { background-image: url("../images/icon_public.png"); }
@@ -1213,6 +1220,10 @@ body.admin {
 .column-link[href="/web/timelines/public/local"] {
   background-image: url("../images/icon_local.png");
   &:hover { background-image: url("../images/icon_local.png"); }
+}
+.column-link[href="/web/timelines/direct"] {
+  background-image: url("../images/icon_direct.png");
+  &:hover { background-image: url("../images/icon_direct.png"); }
 }
 .column-link[href="/web/pinned"] {
   background-image: url("../images/icon_pin.png");
@@ -1237,6 +1248,10 @@ body.admin {
 .column-link[href="/web/blocks"] {
   background-image: url("../images/icon_blocks.png");
   &:hover { background-image: url("../images/icon_blocks.png"); }
+}
+.column-link[href="/web/domain_blocks"] {
+  background-image: url("../images/icon_domain_blocks.png");
+  &:hover { background-image: url("../images/icon_domain_blocks.png"); }
 }
 .column-link[href="/web/mutes"] {
   background-image: url("../images/icon_mutes.png");
@@ -1304,10 +1319,35 @@ body.admin {
   color:white;
 }
 
+.account__header .account__header__fields {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+
+  dt {
+    background-color:$win95-bg;
+    color:black;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid $win95-mid-grey;
+    border-right: 1px solid $win95-mid-grey;
+  }
+  dd {
+    background-color:white;
+    border: 1px solid $win95-bg;
+    color:black;
+  }
+  dd,dt {
+    padding: 5px 8px;
+  }
+}
+
 .account-authorize__wrapper {
   border: 2px groove $win95-bg;
   margin: 2px;
   padding:2px;
+}
+
+.domain .domain__domain-name strong {
+  color: black;
 }
 
 .account--panel {
@@ -1675,6 +1715,9 @@ body.admin {
   min-height:100%;
   box-sizing:border-box;
   position:relative;
+}
+.admin-wrapper .content h4 {
+  color: black;
 }
 
 .admin-wrapper .sidebar {
