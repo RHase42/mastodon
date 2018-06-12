@@ -72,53 +72,8 @@ $ui-highlight-color: $win95-window-header;
   src: url('../fonts/premillenium/MSSansSerif.ttf') format('truetype');
 }
 
-@import 'application';
+@import 'cybre-base';
 
-/* borrowed from cybrespace style: wider columns and full column width images */
-
-@media screen and (min-width: 1300px) {
-  .column {
-    flex-grow: 1 !important;
-    max-width: 400px;
-  }
-
-  .drawer {
-    width: 17%;
-    max-width: 400px;
-    min-width: 330px;
-  }
-}
-
-.media-gallery,
-.video-player {
-  max-height:30vh;
-  height:30vh !important;
-  position:relative;
-  margin-top:20px;
-  margin-left:-68px;
-  width: calc(100% + 80px) !important;
-  max-width: calc(100% + 80px);
-}
-
-.detailed-status .media-gallery,
-.detailed-status .video-player {
-  margin-left:-5px;
-  width: calc(100% + 9px);
-  max-width: calc(100% + 9px);
-}
-
-.video-player video {
-  transform: unset;
-  top: unset;
-}
-
-.detailed-status .media-spoiler,
-.status .media-spoiler {
-  height: 100%!important;
-  vertical-align: middle;
-}
-
-/* main win95 style */
 
 body {
   font-size:13px;
@@ -204,7 +159,6 @@ body.admin {
 
 .drawer__pager {
   overflow-y:auto;
-  z-index:1;
 }
 
 .privacy-dropdown__dropdown {
@@ -859,21 +813,17 @@ body.admin {
     display: none;
 }
 
-.search-results__section h5 span {
+.search-results__section h5 {
+  background: #bfbfbf;
+  span {
     color: black;
-    background: #bfbfbf;
     padding: 0px 2px;
+  }
 }
 
 .search-results__section {
     border: 3px groove white;
     margin: 11px 6px 9px 3px;
-}
-
-.search-results__section h5 {
-    position: relative;
-    top: -11px;
-    padding-left: 7px;
 }
 
 .search-results__section .account:hover,
@@ -894,6 +844,11 @@ body.admin {
   &:hover {
     color: #808080;
   }
+}
+
+.trends__item__name a,
+.trends__item__current {
+  color: black;
 }
 
 .drawer__inner,
@@ -1144,17 +1099,32 @@ body.admin {
   color:black;
 }
 
+.column {
+  overflow-y:auto;
+}
+
 .getting-started__wrapper {
   position:relative;
   top:-60px;
-  margin-top:5px;
   padding-top:0px;
   z-index:10;
 
-  @include win95-outset()
+  box-shadow: inset -1px 0px 0px #000000,
+              inset 1px 1px 0px #ffffff,
+              inset -2px 0px 0px #808080,
+              inset 2px 2px 0px #dfdfdf;
+  border-radius:0px;
+
   background-color:$win95-bg;
 
   border-top:60px solid $win95-cyan;
+  border-bottom: 2px groove $win95-bg;
+
+  height: unset !important;
+
+  .navigation-bar {
+    padding-left: 45px;
+  }
 
   .column-subheading {
     font-size:0px;
@@ -1183,6 +1153,17 @@ body.admin {
       width:32px;
     }
   }
+}
+
+@media screen and (min-width: 360px) {
+  .getting-started__wrapper{
+    margin-bottom:0px;
+  }
+}
+
+
+.getting-started__wrapper + .flex-spacer {
+  display:none;
 }
 
 .column-link[href="/web/timelines/home"] {
@@ -1238,37 +1219,87 @@ body.admin {
   &:hover { background-image: url("../images/icon_settings.png"); }
 }
 
-.column-link[href="/web/keyboard-shortcuts"] {
+.getting-started__footer ul li a[href="/web/keyboard-shortcuts"] {
   background-image: url("../images/icon_keyboard_shortcuts.png");
   &:hover { background-image: url("../images/icon_keyboard_shortcuts.png"); }
 }
-.column-link[href="/about/more"] {
+.getting-started__footer ul li a[href="/terms"] {
+  background-image: url("../images/icon_tos.png");
+  &:hover { background-image: url("../images/icon_tos.png"); }
+}
+.getting-started__footer ul li a[href="https://github.com/tootsuite/documentation#documentation"] {
+  background-image: url("../images/icon_docs.png");
+  &:hover { background-image: url("../images/icon_docs.png"); }
+}
+.getting-started__footer ul li a[href="/about/more"] {
   background-image: url("../images/icon_about.png");
   &:hover { background-image: url("../images/icon_about.png"); }
 }
-.column-link[href="/auth/sign_out"] {
+.getting-started__footer ul li a[href="/auth/sign_out"] {
   background-image: url("../images/icon_logout.png");
   &:hover { background-image: url("../images/icon_logout.png"); }
 }
 
 .getting-started__footer {
-  /*display:none;*/
+  background-color: $win95-bg;
+  padding:0px;
+  position:relative;
+  top:-62px;
+  
+  @include win95-outset();
+  
+  p {
+    margin-left: 45px;
+  }
+
+  ul {
+    display:block;
+    li {
+      cursor:pointer;
+      display:block;
+      font-size:0px;
+      padding:0px;
+      line-height:0;
+      a {
+        padding:15px;
+        padding-left:77px;
+        line-height:1em;
+        font-size:16px;
+        display:block;
+        color:black;
+        background-size:32px 32px;
+        background-repeat:no-repeat;
+        background-position: 36px 50%;
+        &:hover {
+          text-decoration:none;
+        }
+      }
+
+      &:hover {
+        background-color: $win95-window-header;
+        a {
+          color:white;
+        }
+      }
+    }
+  }
 }
 
 .getting-started__wrapper::before {
   content: "Start";
+  display:block;
   color:black;
   font-weight:bold;
   font-size:15px;
-  position:relative;
-  top:-26px;
+  position:absolute;
+  top:-32px;
   left:0px;
   padding:5px 15px;
-  width:60px;
+  width:50px;
   font-size:16px;
   padding-left:25px;
   background-color:$win95-bg;
-  z-index:11;
+  z-index:12;
 
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII=");
   background-repeat:no-repeat;
@@ -1279,7 +1310,7 @@ body.admin {
   @include win95-border-inset();
 }
 
-.getting-started__wrapper::after {
+.getting-started__footer::after {
   content:"Mastodon 95";
   font-weight:bold;
   font-size:23px;
@@ -1294,8 +1325,10 @@ body.admin {
   display:block;
   position:absolute;
   background-color:#7f7f7f;
-  width:100%;
+  width:624.5px;
   height:32px;
+
+  z-index:11;
 
   border-left: 2px solid #404040;
   border-top: 2px solid #efefef;
@@ -1893,6 +1926,18 @@ body.admin {
   @include win95-border-slight-inset();
 }
 
+.admin-wrapper .table th, .table td {
+  background-color:transparent;
+}
+
+.admin-wrapper button.table-action-link, 
+.admin-wrapper a.table-action-link,
+.admin-wrapper button.table-action-link:hover, 
+.admin-wrapper a.table-action-link:hover,
+.admin-wrapper a.name-tag, 
+.admin-wrapper .name-tag, 
+.admin-wrapper a.inline-name-tag, 
+.admin-wrapper .inline-name-tag,
 .admin-wrapper .content h2,
 .simple_form .input.with_label .label_input > label,
 .admin-wrapper .content h6,
@@ -2019,4 +2064,19 @@ a.table-action-link:hover,
 .list-editor .drawer__inner {
   @include win95-inset();
   border-radius: 0;
+}
+
+.batch-table__toolbar {
+  border-radius: 0px;
+  background-color:white;
+  border: 1px solid black;
+}
+
+.batch-table__row {
+  border: 1px solid black;
+  background-color: white;
+
+  &:hover {
+    background-color: white;
+  }
 }
