@@ -5,6 +5,7 @@ $ui-secondary-color: #ead0d6; // "lightest"
 $ui-primary-color: #bf5677; // "lighter"
 $ui-highlight-color: #bf5677; // "vibrant"
 $primary-text-color: #382b32;
+$secondary-text-color: #382b32;
 
 $header-color: $ui-primary-color;
 $header-text-color: #fff;
@@ -633,7 +634,7 @@ button.icon-button {
   }
 }
 
-.reply-indicator__content {
+.reply-indicator__content a {
   color: lighten($ui-highlight-color, 30%);
 }
 
