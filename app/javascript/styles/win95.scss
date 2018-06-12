@@ -4,6 +4,7 @@ $win95-mid-grey: #808080;
 $win95-window-header: #00007f;
 $win95-tooltip-yellow: #ffffcc;
 $win95-blue: blue;
+$win95-cyan: #008080;
 
 $ui-base-lighter-color: $win95-dark-grey;
 $ui-highlight-color: $win95-window-header;
@@ -1108,46 +1109,6 @@ body.admin {
 
 }
 
-#Getting-started {
-  background-color:$win95-bg;
-  @include win95-inset();
-  border-bottom-width:0px;
-}
-
-#Getting-started::before {
-  content:"Start";
-  color:black;
-  font-weight:bold;
-  font-size:15px;
-  width:80%;
-  text-align:center;
-  display:block;
-  position:absolute;
-  right:2px;
-}
-
-#Getting-started {
-  position:relative;
-  padding:5px 15px;
-  width:60px;
-  font-size:0px;
-  color:$win95-bg;
-
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII=");
-  background-repeat:no-repeat;
-  background-position:8%;
-  background-clip:padding-box;
-  background-size:auto 50%;
-}
-
-.column-subheading {
-  background-color:$win95-bg;
-  color:black;
-  border-bottom: 2px groove $win95-bg;
-  text-transform: none;
-  font-size: 16px;
-}
-
 .column-link {
   background-color:transparent;
   color:black;
@@ -1178,19 +1139,38 @@ body.admin {
   color:black;
 }
 
+.column-subheading {
+  background-color:transparent;
+  color:black;
+}
 
 .getting-started__wrapper {
+  position:relative;
+  top:-60px;
+  margin-top:5px;
+  padding-top:0px;
+  z-index:10;
+
+  @include win95-outset()
+  background-color:$win95-bg;
+
+  border-top:60px solid $win95-cyan;
+
   .column-subheading {
     font-size:0px;
     margin:0px;
     padding:0px;
+    background-color: transparent;
+    color:black;
+    border-bottom: 2px groove $win95-bg;
+    text-transform: none;
   }
 
   .column-link {
     background-size:32px 32px;
     background-repeat:no-repeat;
     background-position: 36px 50%;
-    padding-left:40px;
+    padding-left:45px;
 
     &:hover {
       background-size:32px 32px;
@@ -1241,10 +1221,6 @@ body.admin {
   background-image: url("../images/icon_follow_requests.png");
   &:hover { background-image: url("../images/icon_follow_requests.png"); }
 }
-.column-link[href="/web/keyboard-shortcuts"] {
-  background-image: url("../images/icon_keyboard_shortcuts.png");
-  &:hover { background-image: url("../images/icon_keyboard_shortcuts.png"); }
-}
 .column-link[href="/web/blocks"] {
   background-image: url("../images/icon_blocks.png");
   &:hover { background-image: url("../images/icon_blocks.png"); }
@@ -1261,6 +1237,11 @@ body.admin {
   background-image: url("../images/icon_settings.png");
   &:hover { background-image: url("../images/icon_settings.png"); }
 }
+
+.column-link[href="/web/keyboard-shortcuts"] {
+  background-image: url("../images/icon_keyboard_shortcuts.png");
+  &:hover { background-image: url("../images/icon_keyboard_shortcuts.png"); }
+}
 .column-link[href="/about/more"] {
   background-image: url("../images/icon_about.png");
   &:hover { background-image: url("../images/icon_about.png"); }
@@ -1271,10 +1252,34 @@ body.admin {
 }
 
 .getting-started__footer {
-  display:none;
+  /*display:none;*/
 }
 
 .getting-started__wrapper::before {
+  content: "Start";
+  color:black;
+  font-weight:bold;
+  font-size:15px;
+  position:relative;
+  top:-26px;
+  left:0px;
+  padding:5px 15px;
+  width:60px;
+  font-size:16px;
+  padding-left:25px;
+  background-color:$win95-bg;
+  z-index:11;
+
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII=");
+  background-repeat:no-repeat;
+  background-position:8%;
+  background-clip:padding-box;
+  background-size:auto 50%;
+
+  @include win95-border-inset();
+}
+
+.getting-started__wrapper::after {
   content:"Mastodon 95";
   font-weight:bold;
   font-size:23px;
@@ -1284,23 +1289,24 @@ body.admin {
   padding-right:40px;
 
   left:0px;
-  bottom:-30px;
+  box-sizing:border-box;
+  bottom:-32px;
   display:block;
   position:absolute;
   background-color:#7f7f7f;
-  width:200%;
-  height:30px;
+  width:100%;
+  height:32px;
+
+  border-left: 2px solid #404040;
+  border-top: 2px solid #efefef;
+  border-right: 2px solid #efefef;
+  border-radius:0px;
 
   -ms-transform: rotate(-90deg);
 
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin:top left;
-}
-
-.getting-started__wrapper {
-  @include win95-border-outset()
-  background-color:$win95-bg;
 }
 
 .column .static-content.getting-started {
