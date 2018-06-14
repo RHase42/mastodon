@@ -375,7 +375,6 @@
     padding: 10px;
     cursor: pointer;
     border-radius: 4px;
-
     &:hover,
     &:focus,
     &:active,
@@ -1510,9 +1509,21 @@ a.account__display-name {
     text-decoration: none;
   }
 
-  .icon-button {
-    pointer-events: none;
-    opacity: 0;
+  .navigation-bar__actions {
+    position: relative;
+
+    .icon-button.close {
+      position: absolute;
+      pointer-events: none;
+      transform: scale(0.0, 1.0) translate(-100%, 0);
+      opacity: 0;
+    }
+
+    .compose__action-bar .icon-button {
+      pointer-events: auto;
+      transform: scale(1.0, 1.0) translate(0, 0);
+      opacity: 1;
+    }
   }
 }
 
@@ -3301,6 +3312,78 @@ a.status-card {
   }
 }
 
+.advanced-options-dropdown {
+  position: relative;
+}
+
+.advanced-options-dropdown__dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 27px;
+  width: 210px;
+  background: $simple-background-color;
+  border-radius: 0 4px 4px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.advanced-options-dropdown__option {
+  color: $ui-base-color;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+
+  &:hover,
+  &.active {
+    background: $ui-highlight-color;
+    color: $primary-text-color;
+
+    .advanced-options-dropdown__option__content {
+      color: $primary-text-color;
+
+      strong {
+        color: $primary-text-color;
+      }
+    }
+  }
+
+  &.active:hover {
+    background: lighten($ui-highlight-color, 4%);
+  }
+}
+
+.advanced-options-dropdown__option__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.advanced-options-dropdown__option__content {
+  flex: 1 1 auto;
+  color: darken($ui-primary-color, 24%);
+
+  strong {
+    font-weight: 500;
+    display: block;
+    color: $ui-base-color;
+  }
+}
+
+.advanced-options-dropdown.open {
+  .advanced-options-dropdown__value {
+    background: $simple-background-color;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+  }
+
+  .advanced-options-dropdown__dropdown {
+    display: block;
+    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+  }
+}
+
 .search {
   position: relative;
 }
@@ -4794,8 +4877,6 @@ a.status-card {
   }
 }
 
-.community-timeline__section-headline,
-.public-timeline__section-headline,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -4932,9 +5013,18 @@ noscript {
       transition: margin-top $duration $delay;
     }
 
-    & > .icon-button {
-      will-change: opacity;
-      transition: opacity $duration $delay;
+    .navigation-bar__actions {
+      & > .icon-button.close {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay,
+                    transform $duration $delay;
+      }
+
+      & > .compose__action-bar .icon-button {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+                    transform $duration $delay;
+      }
     }
   }
 
@@ -4961,9 +5051,18 @@ noscript {
         margin-top: -50px;
       }
 
-      .icon-button {
-        pointer-events: auto;
-        opacity: 1;
+      .navigation-bar__actions {
+        .icon-button.close {
+          pointer-events: auto;
+          opacity: 1;
+          transform: scale(1.0, 1.0) translate(0, 0);
+        }
+
+        .compose__action-bar .icon-button {
+          pointer-events: none;
+          opacity: 0;
+          transform: scale(0.0, 1.0) translate(100%, 0);
+        }
       }
     }
   }
@@ -5344,3 +5443,4 @@ noscript {
     }
   }
 }
+@import 'doodle';
