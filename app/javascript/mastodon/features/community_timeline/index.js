@@ -8,7 +8,6 @@ import ColumnHeader from '../../components/column_header';
 import { expandCommunityTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import SectionHeadline from './components/section_headline';
 import { connectCommunityStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -22,6 +21,10 @@ const mapStateToProps = (state, { onlyMedia }) => ({
 @connect(mapStateToProps)
 @injectIntl
 export default class CommunityTimeline extends React.PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static defaultProps = {
     onlyMedia: false,
@@ -89,26 +92,16 @@ export default class CommunityTimeline extends React.PureComponent {
     dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
   }
 
-  handleHeadlineLinkClick = e => {
+  handleSettingChanged = (key, checked) => {
     const { columnId, dispatch } = this.props;
-    const onlyMedia = /\/media$/.test(e.currentTarget.href);
-
-    dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
+    if (!columnId && key[0] == 'other' && key[1] == 'onlyMedia') {
+      this.context.router.history.replace(`/timelines/public/local${checked ? '/media' : ''}`);
+    }
   }
 
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
-
-    const headline = (
-      <SectionHeadline
-        timelineId='community'
-        to='/timelines/public/local'
-        pinned={pinned}
-        onlyMedia={onlyMedia}
-        onClick={this.handleHeadlineLinkClick}
-      />
-    );
 
     return (
       <Column ref={this.setRef}>
@@ -122,12 +115,10 @@ export default class CommunityTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={headline}
-          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
