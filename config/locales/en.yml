@@ -784,6 +784,7 @@ en:
     mastodon: Mastodon
     mastodon-light: Mastodon (light)
     light: Cybre Lite
+    win95: Windows 95
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
