@@ -304,6 +304,9 @@ $gold-star: #dd9d08;
   }
   .compose-form__buttons-wrapper {
     background-color:$ui-primary-color;
+    .character-counter__wrapper .character-counter {
+      color: $white;
+    }
   }
 
   .icon-button.inverted {
