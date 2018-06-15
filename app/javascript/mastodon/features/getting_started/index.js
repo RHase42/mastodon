@@ -7,27 +7,27 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from '../../initial_state';
+import { me, invitesEnabled } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
 import NavigationBar from '../compose/components/navigation_bar';
 
 const messages = defineMessages({
-  home_timeline: { id: 'tabs_bar.home', defaultMessage: '/timelines/home' },
-  notifications: { id: 'tabs_bar.notifications', defaultMessage: '~/.notifications' },
-  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: '/timelines/federated' },
+  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
+  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
-  community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: '/timelines/local' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: '~/.dms' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'edit ~/.config' },
-  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: '~/.follow-requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: '~/.florps' },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: '~/.blocked' },
-  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: '~/.muted/domains' },
-  mutes: { id: 'navigation_bar.mutes', defaultMessage: '~/.muted' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: '~/.pinned' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: '~/.lists' },
+  community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
+  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
@@ -147,7 +147,7 @@ export default class GettingStarted extends ImmutablePureComponent {
             <FormattedMessage
               id='getting_started.open_source_notice'
               defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-              values={{ github: <a href='https://github.com/cybrespace/mastodon' rel='noopener' target='_blank'>cybrespace/mastodon</a> }}
+              values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
             />
           </p>
         </div>
