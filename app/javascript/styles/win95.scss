@@ -1223,6 +1223,10 @@ body.admin {
   background-image: url("../images/icon_keyboard_shortcuts.png");
   &:hover { background-image: url("../images/icon_keyboard_shortcuts.png"); }
 }
+.getting-started__footer ul li a[href="/invites"] {
+  background-image: url("../images/icon_invite.png");
+  &:hover { background-image: url("../images/icon_invite.png"); }
+}
 .getting-started__footer ul li a[href="/terms"] {
   background-image: url("../images/icon_tos.png");
   &:hover { background-image: url("../images/icon_tos.png"); }
