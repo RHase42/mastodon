@@ -6,7 +6,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { expandPublicTimeline } from '../../actions/timelines';
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from '../../actions/streaming';
 
@@ -14,9 +14,16 @@ const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia }) => ({
-  hasUnread: state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-});
+const mapStateToProps = (state, { onlyMedia, columnId }) => {
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') === uuid);
+
+  return {
+    hasUnread: state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
+    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']),
+  };
+};
 
 @connect(mapStateToProps)
 @injectIntl
@@ -93,8 +100,8 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleSettingChanged = (key, checked) => {
-    const { columnId, dispatch } = this.props;
-    if (!columnId && key[0] == 'other' && key[1] == 'onlyMedia') {
+    const { columnId } = this.props;
+    if (!columnId && key[0] === 'other' && key[1] === 'onlyMedia') {
       this.context.router.history.replace(`/timelines/public${checked ? '/media' : ''}`);
     }
   }
@@ -115,7 +122,7 @@ export default class PublicTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer onChange={this.handleSettingChanged} settingKey={columnId} />
+          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
